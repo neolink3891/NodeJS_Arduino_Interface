@@ -1,0 +1,193 @@
+<html style="height: 100%; width: 100%; padding: 0px;">
+<head>
+<title>Testing Node.js Site</title>
+</head>
+<body id="pqp_body" style="height: 100%; width: 100%; padding: 0px; overflow: hidden;" oncontextmenu="return false;">
+    <div id="pqp_intro" style="height: 100%; width: 100%; background: url('/pqp1.png'); background-repeat: no-repeat; background-size: 100% 100%; visibility: visible; position: absolute; top: 0px; left: 0px;" onclick="hideDiv('pqp_intro','pqp_keypad');">
+        <img id="pqp_loading" style="height: 100px; width: 100px; position: absolute; top: 0; left: 0" alt="" src="/wait.gif" />
+    </div>
+    <div id="pqp_keypad" style="height: 100%; width: 100%; background: url('/pqp2.png'); background-repeat: no-repeat; background-size: 100% 100%; visibility: hidden; position: absolute; top: 0px; left: 0px;">
+        <div id="pqp_keys" style="border: 1px solid navy; height: 70%; width: 55%; position: absolute; top: 0; left: 0; border-radius: 25px; background-color: #EBF5FB; box-shadow: 10px 10px 5px #2874A6;">
+            <div style="height: 6%; width: 100%; text-align: center; font-weight: bold; font-size: 25px; padding-top: 5px; color: navy;">INGRESA TU PIN DE RECOLECCION</div>
+            <hr />
+            <div style="height: 15%; width: 100%; display: block;">
+                <div style="height: 100%; width: 15%; float: left;">
+                    <img id="pqp_togglepin" style="height: 100%; width: 100%;" alt="" src="/pqp_poff.png" onclick="tooglePinVisibility();" />
+                </div>
+                <div id="pqp_pin" style="height: 93%; width: 69.5%; float: left; border: 1px solid grey; background-color: white; text-align: center; font-size: 50px; font-weight: bold; padding-top: 3px;"></div>
+                <div style="height: 100%; width: 15%; float: left;">
+                    <img style="height: 100%; width: 100%;" alt="" src="/pqp_del.png" onclick="deleteLast();" />
+                </div>
+            </div>
+            <hr />
+            <div style="height: 50%; width: 100%;">
+                <div style="width: 100%; height: 25%; display: block;">
+                    <div style="height: 100%; width: 5%; float: left;"></div>
+                    <div style="height: 100%; width: 30%; float: left; display: flex; justify-content: center;">
+                        <img style="height: 80%; text-align: center" alt="" src="/1.png" onclick="buildPin('1');" />
+                    </div>
+                    <div style="height: 100%; width: 30%; float: left; display: flex; justify-content: center;">
+                        <img style="height: 80%; text-align: center" alt="" src="/2.png" onclick="buildPin('2');" />
+                    </div>
+                    <div style="height: 100%; width: 30%; float: left; display: flex; justify-content: center;">
+                        <img style="height: 80%; text-align: center" alt="" src="/3.png" onclick="buildPin('3');" />
+                    </div>
+                    <div style="height: 100%; width: 5%; float: left;"></div>
+                </div>
+                <div style="width: 100%; height: 25%;">
+                    <div style="height: 100%; width: 5%; float: left;"></div>
+                    <div style="height: 100%; width: 30%; float: left; display: flex; justify-content: center;">
+                        <img style="height: 80%; text-align: center" alt="" src="/4.png" onclick="buildPin('4');" />
+                    </div>
+                    <div style="height: 100%; width: 30%; float: left; display: flex; justify-content: center;">
+                        <img style="height: 80%; text-align: center" alt="" src="/5.png" onclick="buildPin('5');" />
+                    </div>
+                    <div style="height: 100%; width: 30%; float: left; display: flex; justify-content: center;">
+                        <img style="height: 80%; text-align: center" alt="" src="/6.png" onclick="buildPin('6');" />
+                    </div>
+                    <div style="height: 100%; width: 5%; float: left;"></div>
+                </div>
+                <div style="width: 100%; height: 25%;">
+                    <div style="height: 100%; width: 5%; float: left;"></div>
+                    <div style="height: 100%; width: 30%; float: left; display: flex; justify-content: center;">
+                        <img style="height: 80%; text-align: center" alt="" src="/7.png" onclick="buildPin('7');" />
+                    </div>
+                    <div style="height: 100%; width: 30%; float: left; display: flex; justify-content: center;">
+                        <img style="height: 80%; text-align: center" alt="" src="/8.png" onclick="buildPin('8');" />
+                    </div>
+                    <div style="height: 100%; width: 30%; float: left; display: flex; justify-content: center;">
+                        <img style="height: 80%; text-align: center" alt="" src="/9.png" onclick="buildPin('9');" />
+                    </div>
+                    <div style="height: 100%; width: 5%; float: left;"></div>
+                </div>
+                <div style="width: 100%; height: 25%;">
+                    <div style="height: 100%; width: 5%; float: left;"></div>
+                    <div style="height: 100%; width: 30%; float: left; display: flex; justify-content: center;">
+                        <img style="height: 80%; text-align: center" alt="" src="/ok_.png" onclick="goForPIN();" />
+                    </div>
+                    <div style="height: 100%; width: 30%; float: left; display: flex; justify-content: center;">
+                        <img style="height: 80%; text-align: center" alt="" src="/0.png" onclick="buildPin('0');" />
+                    </div>
+                    <div style="height: 100%; width: 30%; float: left; display: flex; justify-content: center;">
+                        <img style="height: 80%; text-align: center" alt="" src="/cancel_mark.png" onclick="clearPin();" />
+                    </div>
+                    <div style="height: 100%; width: 5%; float: left;"></div>
+                </div>
+            </div>
+            <hr />
+            <div style="height: 7%; width: 100%;">
+                <div id="pqp_wait" style="height: 100%; width: 10%; float: left; display: flex; justify-content: center; visibility: hidden;">
+                    <img style="height: 100%; text-align: center" alt="" src="/wait.gif" />
+                </div>
+                <div id="pqp_mes" style="height: 100%; width: 89%; float: left; font-size: 18px; font-weight: bold; color: darkgreen;"></div>
+            </div>
+            <hr />
+            <div style="height: 4%; width: 100%; text-align: center; font-size: 12px; font-weight: bold; color: navy;">
+                PQP StarLockers - Grupo PAQUEXPRO 2021
+            </div>
+        </div>
+    </div>
+    <div id="pqp_message" style="height: 100%; width: 100%; background: url('/pqp2.png'); background-repeat: no-repeat; background-size: 100% 100%; visibility: hidden; position: absolute; top: 0px; left: 0px;">
+        <div id="pqp_innermessage" style="height: 70%; width: 55%; position: absolute; top: 0; left: 0; border-radius: 25px; background-color: #CAEA89; box-shadow: 10px 10px 5px #5D8018;">
+            <div style="width: 100%; text-align: center; color: seagreen;"><h2>GRACIAS POR TU COMPRA!</h2></div>
+            <div style="width: 100%; text-align: center; color: navy;">
+                Tu paquete esta en la Puerta 2<br /><br />Cierra la Puerta por favor despues de retirar tu paquete.<br /><br />Somos PAQUEXPRO, Profesionales en Logistica y Transporte.
+            </div>
+        </div>
+    </div>
+    
+    <script src="/utils.js"></script>
+    
+    <script>
+        var pin = "";
+        var hpin = "";
+        var phidden = true;
+        
+        function hideDiv(item, nitem) {
+            document.getElementById(item).style.visibility = 'hidden';
+            document.getElementById(nitem).style.visibility = 'visible';
+            document.getElementById('pqp_mes').innerHTML = "";
+            document.getElementById('pqp_wait').style.visibility = 'hidden';
+            pin = "";
+            hpin = "";
+            phidden = true;
+        }
+        function centerKeypad() {
+            var dw = document.getElementById('pqp_keypad').clientWidth;
+            var dh = document.getElementById('pqp_keypad').clientHeight;
+            var kw = document.getElementById('pqp_keys').clientWidth;
+            var kh = document.getElementById('pqp_keys').clientHeight;
+            var mw = document.getElementById('pqp_message').clientWidth;
+            var mh = document.getElementById('pqp_message').clientHeight;
+            var mpw = dw / 2;
+            var mph = dh / 2;
+            var skp = mpw - (kw / 2);
+            var skh = mph - (kh / 2);
+            
+            document.getElementById('pqp_keys').style.left = skp;
+            document.getElementById('pqp_keys').style.top = skh;
+            document.getElementById('pqp_loading').style.left = (mpw - 50);
+            document.getElementById('pqp_loading').style.top = (mph - 50);
+            document.getElementById('pqp_innermessage').style.left = skp;
+            document.getElementById('pqp_innermessage').style.top = skh;
+            
+        }
+        function buildPin(num) {
+            if(pin.length < 8) {
+                pin += num;
+                hpin += "*";
+            
+                displayPin();
+            } else {
+                document.getElementById('pqp_mes').innerHTML = "Tu PIN debe ser de 8 Digitos";
+            }
+        }
+        function displayPin() {
+            if(phidden) {
+                document.getElementById('pqp_pin').innerHTML = hpin;
+            } else {
+                document.getElementById('pqp_pin').innerHTML = pin;
+            }
+        }
+        function tooglePinVisibility() {
+            if(phidden) {
+                phidden = false;
+                document.getElementById('pqp_togglepin').src = '/pqp_pon.png';
+            } else {
+                phidden = true;
+                document.getElementById('pqp_togglepin').src = '/pqp_poff.png';
+            }
+            displayPin();
+        }
+        function deleteLast() {
+            pin = pin.substring(0, pin.length - 1);
+            hpin = hpin.substring(0, hpin.length - 1);
+            
+            displayPin();
+        }
+        function clearPin() {
+            var cpin = document.getElementById('pqp_pin').innerHTML;
+            if(cpin.length > 0) {
+                pin = "";
+                hpin = "";
+                document.getElementById('pqp_pin').innerHTML = "";
+            } else {
+                document.getElementById('pqp_intro').style.visibility = 'visible';
+                document.getElementById('pqp_keypad').style.visibility = 'hidden';
+            }
+        }
+        function goForPIN() {
+            if(pin.length === 8) {
+                document.getElementById('pqp_wait').style.visibility = 'visible';
+                document.getElementById('pqp_mes').innerHTML = "Verificando PIN, espera por favor...";
+                checkPIN(pin);
+            } else {
+                document.getElementById('pqp_mes').innerHTML = "Tu PIN debe ser de 8 Digitos";
+            }
+        }
+        
+        centerKeypad();
+        tagLockers();
+    </script>
+</body>
+</html>

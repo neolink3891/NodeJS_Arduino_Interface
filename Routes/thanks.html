@@ -1,0 +1,82 @@
+<html style="height: 100%; width: 100%; padding: 0px;">
+<head>
+<title>Gracias</title>
+</head>
+<body id="pqp_body" style="height: 100%; width: 100%; padding: 0px; overflow: hidden;" oncontextmenu="return false;">
+    <div id="pqp_message" style="height: 100%; width: 100%; background: url('/pqp2.png'); background-repeat: no-repeat; background-size: 100% 100%; position: absolute; top: 0px; left: 0px;">
+        <div id="pqp_innermessage" style="height: 70%; width: 55%; position: absolute; top: 0; left: 0; border-radius: 25px; background-color: #CAEA89; box-shadow: 10px 10px 5px #5D8018;">
+            <div style="width: 100%; text-align: center; color: seagreen;"><h2>GRACIAS POR TU COMPRA!</h2></div>
+            <div style="width: 100%; text-align: center; color: navy;">
+                Tu paquete esta en la Puerta 2<br /><br />Cierra la Puerta por favor despues de retirar tu paquete.<br /><br />Somos PAQUEXPRO, Profesionales en Logistica y Transporte.
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        var enablenotif = "0";
+        var don = 0;
+        var to = 1;
+        var mtn = 10; //Max Time for Notificarion
+        
+        function centerKeypad() {
+            var dw = document.getElementById('pqp_message').clientWidth;
+            var dh = document.getElementById('pqp_message').clientHeight;
+            var kw = document.getElementById('pqp_innermessage').clientWidth;
+            var kh = document.getElementById('pqp_innermessage').clientHeight;
+            var mpw = dw / 2;
+            var mph = dh / 2;
+            var skp = mpw - (kw / 2);
+            var skh = mph - (kh / 2);
+            
+            document.getElementById('pqp_innermessage').style.left = skp;
+            document.getElementById('pqp_innermessage').style.top = skh;
+            
+        }
+        
+        function checkVar() {
+            to += 1
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (xhttp.readyState === XMLHttpRequest.DONE) {
+                    var ldata = xhttp.responseText;
+                    var lda = ldata.split("|");
+                    if(lda[1] === "2") {
+                        sendDoorStatus(lda[0], lda[2], lda[1], "1");
+                    } else {
+                        if(don === 0) {
+                            don = 1;
+                            sendDoorStatus(lda[0], lda[2], lda[1], "0");
+                        } else {
+                            if(to > mtn) {
+                                sendDoorStatus(lda[0], "0.00", "3", "0");
+                                to = 0;
+                            }
+                        }
+                    }
+                }
+            };
+            xhttp.open("GET", "http://localhost:3030/ard/msg:getstatus", true);
+            xhttp.send(null);
+        }
+        
+        function sendDoorStatus(dr, ps, op, re) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if(this.readyState === 4 && this.status === 200){
+                    if(re === "1") {
+                        window.location.href = "http://localhost:3030";
+                    }
+                }
+            };
+
+            xhttp.open("POST", "http://target_url", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("v1=" + "1" + "&v2=" + dr + "&v3=" + ps + "&v4=" + op + "&v5=" + enablenotif);
+        }
+        
+        setInterval(checkVar, 5000);
+        
+        centerKeypad();
+    </script>
+</body>
+</html>
